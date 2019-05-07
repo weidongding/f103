@@ -24,6 +24,13 @@
 
 #include <stdio.h>
 
+int fputc(int ch,FILE *f)
+{  
+    while(USART_GetFlagStatus(USART2,USART_FLAG_TC) != SET); 
+    USART_SendData(USART2,(unsigned char)ch);    
+    while(USART_GetFlagStatus(USART2,USART_FLAG_TC) != SET);  
+    return (ch);  
+}
 int main(int argc, char** argv)
 {
 	return 0;
